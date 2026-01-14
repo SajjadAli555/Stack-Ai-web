@@ -23,6 +23,7 @@ import {
   Globe,
   Settings,
   ArrowRight,
+  ArrowLeft,
   MessageCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -111,6 +112,17 @@ const ListItem = ({ className, title, description, icon: Icon, href }: ListItemP
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuView, setMobileMenuView] = useState<"main" | "services" | "aiSolutions" | "industries" | "company">("main");
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setMobileMenuView("main");
+  };
+
+  const openMobileMenu = () => {
+    setMobileMenuOpen(true);
+    setMobileMenuView("main");
+  };
 
   const navTriggerStyles = cn(
     "group inline-flex h-10 w-max items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200",
@@ -122,7 +134,7 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Glass navigation bar */}
-      <div className="mx-4 mt-4 rounded-2xl glass-strong">
+      <div className="mx-4 mt-4 rounded-2xl glass">
         <div className="container-wide">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -233,7 +245,7 @@ export function Navigation() {
             {/* Mobile Menu Toggle */}
             <button
               className="lg:hidden p-2 text-foreground rounded-xl hover:bg-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => (mobileMenuOpen ? closeMobileMenu() : openMobileMenu())}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -252,44 +264,142 @@ export function Navigation() {
             className="lg:hidden mx-4 mt-2 rounded-2xl bg-background border border-border shadow-large overflow-hidden"
           >
             <div className="py-4 px-5 space-y-4 max-h-[75vh] overflow-y-auto">
-              <div className="space-y-1">
-                <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Services</p>
-                {servicesMenu.map((service) => (
-                  <Link
-                    key={service.title}
-                    href={service.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+              {mobileMenuView === "main" ? (
+                <div className="space-y-1">
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuView("services")}
+                    className="flex w-full items-center justify-between rounded-xl p-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
                   >
-                    <service.icon className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{service.title}</p>
-                      <p className="text-xs text-muted-foreground">{service.description}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="pt-4 border-t border-border space-y-1">
-                <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">AI Solutions</p>
-                {aiSolutionsMenu.map((solution) => (
-                  <Link
-                    key={solution.title}
-                    href={solution.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                    Services
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuView("aiSolutions")}
+                    className="flex w-full items-center justify-between rounded-xl p-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
                   >
-                    <solution.icon className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{solution.title}</p>
-                    </div>
+                    AI Solutions
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuView("industries")}
+                    className="flex w-full items-center justify-between rounded-xl p-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    Industries
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  <Link
+                    href="/case-studies"
+                    onClick={closeMobileMenu}
+                    className="flex w-full items-center justify-between rounded-xl p-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    Case Studies
                   </Link>
-                ))}
-              </div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuView("company")}
+                    className="flex w-full items-center justify-between rounded-xl p-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    Company
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuView("main")}
+                    className="flex items-center gap-2 rounded-xl p-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Back
+                  </button>
+                  <div className="pt-2">
+                    {mobileMenuView === "services" && (
+                      <>
+                        <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Services</p>
+                        {servicesMenu.map((service) => (
+                          <Link
+                            key={service.title}
+                            href={service.href}
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                          >
+                            <service.icon className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="text-sm font-medium text-foreground">{service.title}</p>
+                              <p className="text-xs text-muted-foreground">{service.description}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </>
+                    )}
+                    {mobileMenuView === "aiSolutions" && (
+                      <>
+                        <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">AI Solutions</p>
+                        {aiSolutionsMenu.map((solution) => (
+                          <Link
+                            key={solution.title}
+                            href={solution.href}
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                          >
+                            <solution.icon className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="text-sm font-medium text-foreground">{solution.title}</p>
+                              <p className="text-xs text-muted-foreground">{solution.description}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </>
+                    )}
+                    {mobileMenuView === "industries" && (
+                      <>
+                        <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Industries</p>
+                        {industriesMenu.map((industry) => (
+                          <Link
+                            key={industry.title}
+                            href={industry.href}
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                          >
+                            <industry.icon className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="text-sm font-medium text-foreground">{industry.title}</p>
+                              <p className="text-xs text-muted-foreground">{industry.description}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </>
+                    )}
+                    {mobileMenuView === "company" && (
+                      <>
+                        <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Company</p>
+                        {company.map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                          >
+                            <item.icon className="w-5 h-5 text-primary" />
+                            <div>
+                              <p className="text-sm font-medium text-foreground">{item.title}</p>
+                              <p className="text-xs text-muted-foreground">{item.description}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
 
               <div className="pt-4 border-t border-border">
                 <Link href="/contact-us">
-                  <Button className="w-full rounded-xl bg-primary/10 text-primary-foreground hover:bg-primary/10/90">
+                  <Button className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/10/90" onClick={closeMobileMenu}>
                     Let's Talk
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>

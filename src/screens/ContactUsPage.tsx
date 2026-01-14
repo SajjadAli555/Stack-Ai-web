@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Head from "next/head";
+import { useMutation } from "@tanstack/react-query";
 
 const contactMethods = [
   {
@@ -51,7 +52,6 @@ const inquiryTypes = [
 
 export default function ContactUsPage() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedInquiry, setSelectedInquiry] = useState("general");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -60,6 +60,46 @@ export default function ContactUsPage() {
     phone: "",
     company: "",
     message: "",
+  });
+
+  const sendContactMessage = async () => {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...formData, inquiryType: selectedInquiry }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to send message.");
+    }
+
+    return response.json();
+  };
+
+  const { mutate: submitContactForm, isPending } = useMutation({
+    mutationFn: sendContactMessage,
+    onSuccess: () => {
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: "",
+      });
+      setSelectedInquiry("general");
+    },
+    onError: () => {
+      toast({
+        title: "Message failed",
+        description: "Please try again in a moment.",
+      });
+    },
   });
 
   const handleInputChange = (
@@ -71,27 +111,9 @@ export default function ContactUsPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
-
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      company: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+    submitContactForm();
   };
 
   return (
@@ -321,10 +343,10 @@ export default function ContactUsPage() {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isPending}
                     className="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/10/90 h-12"
                   >
-                    {isSubmitting ? (
+                    {isPending ? (
                       <span className="flex items-center gap-2">
                         <svg
                           className="animate-spin h-4 w-4"

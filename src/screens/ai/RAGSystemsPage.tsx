@@ -305,7 +305,7 @@ export default function RAGSystemsPage() {
             <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
               Get a security assessment and deployment roadmap tailored to your compliance requirements
             </p>
-            <Button size="lg" variant="secondary" className="gap-2">
+            <Button size="lg" variant="secondary" className="gap-2" onClick={() => navigate('/contact-us')}>
               Request Security Assessment <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>

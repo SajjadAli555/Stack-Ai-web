@@ -526,12 +526,10 @@ const CaseStudyDetail = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-4">
-                  <Button size="lg" className="gap-2">
+                  <Button size="lg" className="gap-2" onClick={() => router.push("/contact-us")}>
                     Schedule Consultation <ArrowRight className="w-4 h-4" />
                   </Button>
-                  <Button size="lg" variant="outline">
-                    Download PDF
-                  </Button>
+
                 </div>
               </motion.div>
 
@@ -821,7 +819,7 @@ const CaseStudyDetail = () => {
                 Let's discuss how we can help transform your organization with the same
                 proven approach that delivered success for {caseStudy.title}.
               </p>
-              <Button size="lg" variant="secondary" className="gap-2">
+              <Button size="lg" variant="secondary" className="gap-2" onClick={() => router.push('/contact-us')}>
                 Schedule Consultation <ArrowRight className="w-4 h-4" />
               </Button>
             </motion.div>

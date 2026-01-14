@@ -225,13 +225,12 @@ export default function FinancePage() {
               Partner with us to modernize your financial technology infrastructure
               while maintaining the highest standards of security and compliance.
             </p>
-            <Button size="lg" variant="secondary" className="gap-2">
+            <Button size="lg" variant="secondary" className="gap-2" onClick={() => navigate('/contact-us')}>
               Schedule Consultation <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>
         </div>
       </section>
-
       <Footer />
     </div>
   );

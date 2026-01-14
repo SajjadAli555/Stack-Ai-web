@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Head from "next/head";
+import { useNavigate } from "@/hooks/useNavigate";
 
 type FilterCategory = "all" | "government" | "enterprise" | "ai";
 
@@ -163,6 +164,7 @@ const filterLabels: Record<FilterCategory, string> = {
 };
 
 const CaseStudies = () => {
+  const navigate = useNavigate()
   const [activeFilter, setActiveFilter] = useState < FilterCategory > ("all");
 
   const filteredStudies = activeFilter === "all"
@@ -226,7 +228,7 @@ const CaseStudies = () => {
                 <ToggleGroupItem
                   key={key}
                   value={key}
-                  className="px-5 py-2.5 rounded-lg text-sm font-medium data-[state=on]:bg-primary/10 data-[state=on]:text-primary-foreground transition-all"
+                  className="px-5 py-2.5 rounded-lg text-sm font-medium data-[state=on]:bg-primary data-[state=on]:text-primary-foreground transition-all"
                 >
                   {filterLabels[key]}
                 </ToggleGroupItem>
@@ -478,13 +480,11 @@ const CaseStudies = () => {
                     Let's discuss how we can help you achieve similar results.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button size="lg" className="rounded-lg">
+                    <Button size="lg" className="rounded-lg" onClick={() => navigate('/contact-us')}>
                       Schedule a Consultation
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
-                    <Button size="lg" variant="outline" className="rounded-lg">
-                      View Our Approach
-                    </Button>
+
                   </div>
                 </div>
                 <div className="hidden md:grid grid-cols-2 gap-4">

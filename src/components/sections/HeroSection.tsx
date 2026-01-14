@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
  * Uses Framer Motion for hardware-accelerated animations.
  */
 export function HeroSection() {
-  const dynamicPhrases = ["Future-Ready.", "AI-Native.", "Built to Evolve.", "Enterprise-Ready."];
+  const dynamicPhrases = ["Mircosoft Stack.", "SAP Modernization.", "Salesforce.", "Workday.", 'Web App Dev.', 'Mobile App Dev.'];
   const [phraseIndex, setPhraseIndex] = useState(0);
   const router = useRouter();
 
@@ -48,17 +48,17 @@ export function HeroSection() {
           </motion.div>
 
           {/* Headline - Optimized for large displays and baseline safety */}
-          <div className="mb-6 overflow-visible">
+          <div className="md:mb-6 mb-1 overflow-visible">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-[96px] font-black tracking-tight text-foreground leading-[1.05]"
+              className="text-3xl sm:text-5xl md:text-7xl lg:text-[96px] font-black tracking-tight text-foreground leading-[1.05]"
             >
               Right. Fast.
               <br />
               <div
-                className="relative h-[1.4em] w-full flex justify-center items-center"
+                className="relative md:h-[1.4em] h-[1.9em] w-full flex justify-center items-center"
                 style={{
                   /* Mask adjusted to 90% to give 'y' baseline full visibility */
                   maskImage: "linear-gradient(to bottom, transparent, black 15%, black 92%, transparent)",
@@ -90,7 +90,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-16 leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-16 leading-relaxed"
           >
             Proven delivery. Accelerated by AI. Built to auto-scale. We transform complex enterprise challenges into
             elegant, scalable solutions.

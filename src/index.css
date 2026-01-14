@@ -131,7 +131,7 @@
 @layer components {
   /* Glass effects - subtle, minimal blur */
   .glass {
-    @apply bg-white/90 backdrop-blur-md border border-border/30;
+    @apply bg-white/50 backdrop-blur-lg border border-border/25;
     box-shadow: var(--shadow-soft);
   }
 

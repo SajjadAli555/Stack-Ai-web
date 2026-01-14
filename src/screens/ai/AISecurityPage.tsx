@@ -8,6 +8,7 @@ import {
   Building2, FileCheck, Eye, Key, Award
 } from "lucide-react";
 import Head from "next/head";
+import { useNavigate } from "@/hooks/useNavigate";
 
 const securityPillars = [
   {
@@ -92,6 +93,8 @@ const pageTransition = {
 };
 
 export default function AISecurityPage() {
+
+  const navigate = useNavigate();
   return (
     <motion.div
       className="min-h-screen bg-background"
@@ -153,7 +156,7 @@ export default function AISecurityPage() {
               air-gapped capable, and trusted by Canadian government agencies.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2">
+              <Button size="lg" className="gap-2" onClick={() => navigate('/contact-us')}>
                 Request Security Briefing <ArrowRight className="w-4 h-4" />
               </Button>
 
@@ -348,7 +351,7 @@ export default function AISecurityPage() {
             <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
               Schedule a security briefing with our government AI specialists
             </p>
-            <Button size="lg" variant="secondary" className="gap-2">
+            <Button size="lg" variant="secondary" className="gap-2" onClick={() => navigate('/contact-us')}>
               Request Security Briefing <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>

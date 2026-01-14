@@ -8,6 +8,8 @@ import {
   Brain, MessageSquare, RefreshCw
 } from "lucide-react";
 import Head from "next/head";
+import Image from "next/image";
+import { useNavigate } from "@/hooks/useNavigate";
 
 const capabilities = [
   {
@@ -67,6 +69,7 @@ const pageTransition = {
 };
 
 export default function AIAgentsPage() {
+  const navigate = useNavigate()
   return (
     <motion.div
       className="min-h-screen bg-background"
@@ -128,7 +131,7 @@ export default function AIAgentsPage() {
               human-level reasoning and enterprise-grade reliability.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2">
+              <Button size="lg" className="gap-2" onClick={() => navigate('/contact-us')}>
                 Schedule AI Workshop <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
@@ -292,16 +295,14 @@ export default function AIAgentsPage() {
               </ul>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-secondary to-background border border-border p-8 flex items-center justify-center shadow-medium">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="w-48 h-48 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center"
-                >
-                  <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30">
-                    <Brain className="w-16 h-16 text-primary" />
-                  </div>
-                </motion.div>
+              <div className="relative mx-auto w-full max-w-lg aspect-square overflow-hidden rounded-2xl border border-border shadow-medium">
+                <Image
+                  src="/ai.jpg"
+                  alt="AI Agent"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 560px"
+                  className="object-cover"
+                />
               </div>
             </div>
           </motion.div>
@@ -322,7 +323,7 @@ export default function AIAgentsPage() {
             <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
               Schedule a workshop to explore how AI agents can transform your operations
             </p>
-            <Button size="lg" variant="secondary" className="gap-2">
+            <Button size="lg" variant="secondary" className="gap-2" onClick={() => navigate('/contact-us')}>
               Book AI Workshop <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>

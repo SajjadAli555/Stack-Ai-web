@@ -145,10 +145,9 @@ export default function AIStrategyPage() {
               responsible, scalable AI strategies aligned with business objectives.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2">
+              <Button size="lg" className="gap-2" onClick={() => navigate('/contact-us')}>
                 Book Strategy Session <ArrowRight className="w-4 h-4" />
               </Button>
-
             </div>
           </motion.div>
         </div>
