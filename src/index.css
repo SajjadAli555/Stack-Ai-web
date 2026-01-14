@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+/* 
+   Design System: VEED.IO-Inspired Light Theme
+   Primary: #FF5C00 (HSL 22, 100%, 50%)
+   Section spacing: 120px vertical padding
+*/
+
+@layer base {
+  :root {
+    /* Core palette */
+    --background: 0 0% 100%;
+    --foreground: 235 30% 14%;
+
+    --card: 210 20% 99%;
+    --card-foreground: 235 30% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 235 30% 14%;
+
+    /* Primary: #FF5C00 */
+    --primary: 22 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 235 30% 14%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Section backgrounds */
+    --section-alt: 210 20% 99%;
+    --section-alt-2: 220 14% 97%;
+
+    --accent: 22 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 22 100% 50%;
+
+    --radius: 1rem;
+
+    /* Glass effect tokens - subtle */
+    --glass-background: 0 0% 100% / 0.9;
+    --glass-border: 220 13% 91% / 0.3;
+    --glass-shadow: 235 30% 14% / 0.03;
+    
+    /* Gradient tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(22, 100%, 50%) 0%, hsl(30, 100%, 55%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(220, 14%, 98%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(235, 30%, 10%) 0%, hsl(235, 25%, 15%) 100%);
+    
+    /* Shadow system */
+    --shadow-soft: 0 1px 3px hsl(235 30% 14% / 0.04), 0 1px 2px hsl(235 30% 14% / 0.03);
+    --shadow-medium: 0 4px 6px -1px hsl(235 30% 14% / 0.05), 0 2px 4px -2px hsl(235 30% 14% / 0.03);
+    --shadow-large: 0 10px 25px -5px hsl(235 30% 14% / 0.08), 0 8px 10px -6px hsl(235 30% 14% / 0.04);
+    --shadow-glow: 0 0 30px hsl(22 100% 50% / 0.15);
+
+    /* Sidebar tokens */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215 16% 47%;
+    --sidebar-primary: 235 30% 14%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 235 30% 14%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 22 100% 50%;
+  }
+
+  .dark {
+    --background: 235 30% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 235 25% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 235 25% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 22 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 235 20% 18%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 235 20% 18%;
+    --muted-foreground: 215 16% 60%;
+
+    --accent: 22 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 235 15% 22%;
+    --input: 235 15% 22%;
+    --ring: 22 100% 55%;
+
+    --glass-background: 235 30% 10% / 0.9;
+    --glass-border: 210 20% 98% / 0.05;
+    --glass-shadow: 0 0% 0% / 0.2;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glass effects - subtle, minimal blur */
+  .glass {
+    @apply bg-white/90 backdrop-blur-md border border-border/30;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .glass-strong {
+    @apply bg-white/95 backdrop-blur-lg border border-border/25;
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Dot grid pattern */
+  .dot-grid {
+    background-image: radial-gradient(circle, hsl(235, 30%, 14%, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .dot-grid-dark {
+    background-image: radial-gradient(circle, hsl(210, 20%, 98%, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Grid pattern */
+  .flow-lines {
+    background-image: 
+      linear-gradient(90deg, hsl(22, 100%, 50%, 0.02) 1px, transparent 1px),
+      linear-gradient(hsl(22, 100%, 50%, 0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  /* Shadow utilities */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-large {
+    box-shadow: var(--shadow-large);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-0.5;
+    box-shadow: var(--shadow-medium);
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  /* Section spacing - 120px vertical */
+  .section-padding {
+    @apply py-[120px];
+  }
+
+  /* Container max width */
+  .container-wide {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+  }
+}
+
+@layer utilities {
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Glow pulse animation */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(22, 100%, 50%, 0.1); }
+    50% { box-shadow: 0 0 35px hsl(22, 100%, 50%, 0.2); }
+  }
+
+  /* Ticker animation */
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Fade in up animation */
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  .animate-ticker {
+    animation: ticker 35s linear infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
