@@ -115,8 +115,8 @@ export default async function handler(
 
     await transporter.sendMail({
       from: fromUser,
-      to: "sajjuali439@gmail.com",
-      // cc: "afraz@bdata.ca",
+      to: "syed@bdata.ca",
+      cc: "afraz@bdata.ca",
       replyTo: email,
       subject,
       text,
