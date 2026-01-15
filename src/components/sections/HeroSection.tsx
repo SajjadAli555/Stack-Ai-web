@@ -11,7 +11,44 @@ import { useRouter } from "next/navigation";
  * Uses Framer Motion for hardware-accelerated animations.
  */
 export function HeroSection() {
-  const dynamicPhrases = ["Mircosoft Stack.", "SAP Modernization.", "Salesforce.", "Workday.", 'Web App Dev.', 'Mobile App Dev.'];
+  // const dynamicPhrases = [
+  //   "Full Stack Dev.",
+  //   "Salesforce.",
+  //   "Enterprise.",
+  //   "Cloud.",
+  //   "Solutions.",
+  //   "Automation.",
+  //   "Optimization.",
+  //   "Knowledge.",
+  //   "Security.",
+  //   "Compliance.",
+  //   "Management.",
+  //   "Integration.",
+  //   "Experience.",
+
+  // ];
+  const dynamicPhrases = [
+    // High-Value Enterprise Projects
+    "Dynamics 365",
+    "SAP S/4HANA Migration",
+    "Salesforce Customization",
+    "Workday Integration Services",
+    "Legacy System Modernization",
+
+    // High-Demand AI Services
+    "Enterprise RAG Deployment",
+    "Custom LLM Fine-Tuning",
+    "AI Agent Orchestration",
+    "Secure Generative AI",
+    "Knowledge Graph Construction",
+
+    // Specific Outcomes (What clients buy)
+    "Autonomous Workflow Automation",
+    "CRM Data Migration",
+    "Scalable Cloud Architecture",
+    "Zero Trust Security Audits",
+    "Predictive Analytics Solutions"
+  ];
   const [phraseIndex, setPhraseIndex] = useState(0);
   const router = useRouter();
 
@@ -53,12 +90,12 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-5xl md:text-7xl lg:text-[96px] font-black tracking-tight text-foreground leading-[1.05]"
+              className="text-xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-[76px] font-black tracking-tight text-foreground leading-[1.05]"
             >
               Right. Fast.
               <br />
               <div
-                className="relative md:h-[1.4em] h-[1.9em] w-full flex justify-center items-center"
+                className="relative md:h-[1.6em] h-[2.5em] w-full flex justify-center items-center"
                 style={{
                   /* Mask adjusted to 90% to give 'y' baseline full visibility */
                   maskImage: "linear-gradient(to bottom, transparent, black 15%, black 92%, transparent)",
